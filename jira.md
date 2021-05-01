@@ -68,14 +68,51 @@
       - Styling pseudo class
 
 # Homepage
-   + As a user can see banner
-   + As a user can see categories
-   + As a user can see courses preview 
+   + Selector Home component
+      - Setup selector <navigation>
+      - Setup selector <banner>
+      - Setup seletor <container-card>
+      - Setup selector <footer>
+   + Card Component
+      - Generate component card
+      - Make HTML structure
+      - Styling with tailwind
+      - Mobile responsive
+      - Make function generate Rupiah Format
+   + Container Card
+      - Generate component container card
+      - Generate module card (course) and make interface
+      - Generate service courses and make dummy data course
+      - Import service in component
+      - Looping data in card component
+
+
+# Product page
+   + Selector product component
+      - Setup selector <navigation>
+      - Setup selector <footer>
+   + Filter Component
+      - Generate filter component
+      - Make HTML structure
+      - Styling with tailwind
+      - Mobile responsive
+   + Card Product Component
+      - Generate component card
+      - Make HTML structure
+      - Styling with tailwind
+      - Mobile responsive
+   + Container Product
+      - Generate container product component
+      - Make HTML structure
+      - Styling with tailwind
+      - Mobile responsive
+      - Generate module card (course) and make interface
+      - Generate service courses and make dummy data course product
+      - Import service in component
+      - Looping data in card component
 
 # Profil page
    + 
-
-# Product page
 
 # Detail product page
 

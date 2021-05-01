@@ -3,8 +3,8 @@ import logging from './logging'
 
 class mongooDB {
    public connectDB(): void {
-      const pathURL = 'mongodb://localhost/assign3'
-      const connectOption = { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true}
+      const pathURL = 'mongodb+srv://andar123:andar123@assignment.xcujj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+      const connectOption = { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false}
       mongoose.connect(pathURL, connectOption)
 
       const db = mongoose.connection

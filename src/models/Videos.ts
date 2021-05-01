@@ -2,20 +2,12 @@ import mongoose, { Schema } from 'mongoose'
 
 interface IVideos {
    name: string,
-   image: string,
-   partId: string[],
-   duration: string,
-   url: string,
-   price: number,
+   url: string
 }
 
 interface VideosDocument extends mongoose.Document {
    name: string,
-   image: string,
-   partId: string[],
-   duration: string,
-   url: string,
-   price: number,
+   url: string
 }
 
 interface VideosModelInterface extends mongoose.Model<VideosDocument> {
@@ -24,21 +16,14 @@ interface VideosModelInterface extends mongoose.Model<VideosDocument> {
 
 const videoSchema = new Schema({
    name: {
-      type: String
+      type: String,
+      required: true
    },
-   image: {
-      type: String
-   },
-   partId: {
-      type: String
-   },
-   duration: {
-      type: String
-   },
-   ulr: {
-      type: String
+   url: {
+      type: String,
+      required: true
    }
 }, { timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } })
 
-const Videos = mongoose.model<VideosDocument, VideosModelInterface>('User', videoSchema)
+const Videos = mongoose.model<VideosDocument, VideosModelInterface>('Videos', videoSchema)
 export { Videos }

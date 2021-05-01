@@ -2,28 +2,26 @@ import mongoose, { Mongoose, Schema } from 'mongoose'
 
 interface IUser {
    name: string,
-   username: string,
    email: string,
    password: string,
    image: string,
    address: string,
    city: string,
    telp: string,
-   wishlist: string[],
    cartId: string[],
+   courseId: string[],
 }
 
 interface UserDocument extends mongoose.Document {
    name: string,
-   username: string,
    email: string,
    password: string,
    image: string,
    address: string,
    city: string,
    telp: string,
-   wishlist: string[],
    cartId: string[],
+   courseId: string[],
 }
 
 interface UserModelInterface extends mongoose.Model<UserDocument> {
@@ -34,11 +32,6 @@ const userSchema = new Schema({
    name: {
       type: String,
       required: true
-   },
-   username: {
-      type: String,
-      required: true,
-      unique: true
    },
    email: {
       type: String,
@@ -52,24 +45,21 @@ const userSchema = new Schema({
    image: {
       type: String,
    },
-   addressId: [{
-      type: mongoose.Types.ObjectId, ref: 'Address'
-   }],
+   address: {
+      type: String,
+   },
    city: {
       type: String
    },
    telp: {
       type: String
    },
-   wishlistId: [{
-      type: mongoose.Types.ObjectId, ref: 'Wishlist'
-   }],
    cardId: [{
-      type: mongoose.Types.ObjectId, ref: 'Wishlist'
+      type: mongoose.Types.ObjectId, ref: 'Cart'
    }],
-   logBuy: [{
-      type: mongoose.Types.ObjectId, ref: 'Logbuy'
-   }]
+   courseId: [{
+      type: mongoose.Types.ObjectId, ref: 'Course'
+   }],
 }, { timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } })
 
 const User = mongoose.model<UserDocument, UserModelInterface>('User', userSchema)

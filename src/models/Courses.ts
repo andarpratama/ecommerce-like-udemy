@@ -7,12 +7,11 @@ interface ICourse {
    description: string,
    videosId: string[],
    listOfLearnId: string[],
-   rattingsId: string[],
-   reviewsId: string[],
    instructorId: string[],
    requirementId: string[],
-   commentsId: string[],
    categoryId: string[],
+   topicId: string[],
+   levelId: string[]
 }
 
 interface CourseDocument extends mongoose.Document {
@@ -22,12 +21,11 @@ interface CourseDocument extends mongoose.Document {
    description: string,
    videosId: string[],
    listOfLearnId: string[],
-   rattingsId: string[],
-   reviewsId: string[],
    instructorId: string[],
    requirementId: string[],
-   commentsId: string[],
    categoryId: string[],
+   topicId: string[],
+   levelId: string[]
 }
 
 interface CourseModelInterface extends mongoose.Model<CourseDocument> {
@@ -63,14 +61,6 @@ const courseSchema = new Schema({
       type: mongoose.Types.ObjectId,
       ref: 'Listoflearn'
    }],
-   rattingsId: [{
-      type: mongoose.Types.ObjectId,
-      ref: 'Rattings'
-   }],
-   reviewsId: [{
-      type: mongoose.Types.ObjectId,
-      ref: 'Reviews'
-   }],
    requiermentsId: [{
       type: mongoose.Types.ObjectId,
       ref: 'Requirements'
@@ -82,6 +72,14 @@ const courseSchema = new Schema({
    categoryId: [{
       type: mongoose.Types.ObjectId,
       ref: 'Categories'
+   }],
+   topicId: [{
+      type: mongoose.Types.ObjectId,
+      ref: 'Topics'
+   }],
+   levelId: [{
+      type: mongoose.Types.ObjectId,
+      ref: 'Levels'
    }]
 }, { timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } })
 

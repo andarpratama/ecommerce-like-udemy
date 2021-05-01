@@ -12,15 +12,13 @@ class Auth {
 
    static async register(req: Request, res: Response, err: ErrorRequestHandler) {
       const name:string = req.body.name
-      const username:string = req.body.username
       const email:string = req.body.email
       const password: string = req.body.password
       
       try {
-         if (name && username && email && password) {
+         if (name && email && password) {
             const newUser = await User.create({
                name: name,
-               username: username,
                email: email,
                password: bcrypt.hashSync(password, 8)
             })
