@@ -26,38 +26,41 @@ class Auth {
             res.status(201).json({message: 'Succsess create account..', data: newUser})
          } else {
             logging.warn('AUTH REGISTER', `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
-            res.status(500).json({message: err})
+            // res.status(500).json({message: err})
+            throw ({name: 'Failed_register'})
          }
       } catch (err) {
          logging.warn('AUTH REGISTER', `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
          res.status(500).json({ err, data: 'Error' })
+         throw ({name: 'Failed_register'})
          console.log(err)
       }
    }
-
+   
    static login(req:Request, res:Response){
       User.findOne({ email: req.body.email })
       .then((result) => {
-        if (!result) {
-          return res.status(401).json({success: false,msg: 'Users with this email and password is wrong',});
-        }
+         if (!result) {
+            return res.status(401).json({success: false,msg: 'Users with this email and password is wrong',});
+         }
          
-        let passwordIsValid = bcrypt.compareSync(req.body.password, result.password);
-        if (!passwordIsValid) {
-          return res.status(401).json({success: false,msg: 'Users with this email and password is wrong',});
-        }
+         let passwordIsValid = bcrypt.compareSync(req.body.password, result.password);
+         if (!passwordIsValid) {
+            return res.status(401).json({success: false,msg: 'Users with this email and password is wrong',});
+         }
          
          const secretKey: string = (process.env.SECRET_KEY as string)
-
-        let token:any = jwt.sign({ id: result.id }, secretKey , {
-          expiresIn: '1hr',
-        });
+         
+         let token:any = jwt.sign({ id: result.id }, secretKey , {
+            expiresIn: '1hr',
+         });
          logging.info('AUTH LOGIN', `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
          res.status(200).json({ msg: `Welcome ${result.name}..`, data: result, accessToken: token });
       })
       .catch((err) => {
          logging.warn('AUTH LOGIN', `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
-         res.status(500).json({ msg: 'Failed login', data: err });
+         // res.status(500).json({ msg: 'Failed login', data: err });
+         throw ({name: 'Failed_login'})
       });
    }
    

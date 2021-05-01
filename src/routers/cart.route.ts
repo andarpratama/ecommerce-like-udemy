@@ -7,9 +7,10 @@ class CartRoute {
    router: Router
    constructor() {
       this.router = Router()
-      // this.auth()
+      this.auth()
       this.getAll()
       this.create()
+      this.delete()
    }
 
    public auth(): void {
@@ -22,6 +23,10 @@ class CartRoute {
 
    public create(): void {
       this.router.post('/create', CartController.create)
+   }
+
+   public delete(): void {
+      this.router.post('/delete/:courseId', CartController.delete)
    }
 
 }

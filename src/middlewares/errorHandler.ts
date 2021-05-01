@@ -1,6 +1,6 @@
-import { ErrorRequestHandler, NextFunction } from "express"
+import express, { Response,Request, ErrorRequestHandler, NextFunction } from "express"
 
-module.exports = (err:ErrorRequestHandler, req: Request, res: Response, next: NextFunction) => {
+const errorHandler = (err:ErrorRequestHandler, req: Request, res: Response, next: NextFunction) => {
    let code
    let name = err.name
    let message
@@ -8,7 +8,7 @@ module.exports = (err:ErrorRequestHandler, req: Request, res: Response, next: Ne
    switch (name) {
       case 'Missing_Token':
          code =  401
-         message = 'Nothing access token ...'
+         message = 'Nothing access token...'
          break;
       
       case 'Invalid_Token':
@@ -82,5 +82,7 @@ module.exports = (err:ErrorRequestHandler, req: Request, res: Response, next: Ne
          break;
    }
 
-   // res.status(code).json({success: false,  message})
+   res.status(code).json({success: false,  message})
 }
+
+export default errorHandler

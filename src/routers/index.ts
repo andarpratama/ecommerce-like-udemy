@@ -5,8 +5,8 @@ import CourseRoute from './course.route'
 import UserRoute from "./user.route";
 import VideoRoute from "./video.route";
 import IRoute from './IRoute'
-import videoRoute from './video.route';
 import CartRoute from './cart.route';
+import errorHandler from '../middlewares/errorHandler';
 
 class Routes {
    router: Router
@@ -18,6 +18,7 @@ class Routes {
       this.user()
       this.video()
       this.cart()
+      this.errorHandler()
    }
    
    public home() {
@@ -46,6 +47,10 @@ class Routes {
 
    public cart(): void {
       this.router.use('/cart', CartRoute)
+   }
+
+   public errorHandler(): void{
+      this.router.use(errorHandler)
    }
 
 }
