@@ -4,6 +4,10 @@ import { Courses } from "../models/Courses";
 import { Videos } from "../models/Videos";
 
 class VideoController {
+   static home(req: Request, res: Response, err: ErrorRequestHandler) {
+      res.status(200).json({msg: 'Video / Home'})
+   }
+
    static getAll(req: Request, res: Response, err: ErrorRequestHandler) {
       res.status(200).json({msg: 'Get all videos..'})
    }
@@ -20,7 +24,8 @@ class VideoController {
          
       } catch (err) {
          logging.warn('CREATE VIDEO', `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
-         res.status(500).json({msg: 'Creating new video is failed..', error: err})  
+         // res.status(500).json({msg: 'Creating new video is failed..', error: err})  
+         throw ({name: 'Failed_created'})
       }
    }
 

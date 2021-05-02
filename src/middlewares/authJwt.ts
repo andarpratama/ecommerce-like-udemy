@@ -10,7 +10,6 @@ class authJwt {
          // return res.status(401).json({msg: 'Missing access token..', success: false})
          throw ({name: 'Missing_Token'})
       }
-      console.log(process.env.SECRET_KEY)
       
       const secretKey: string = (process.env.SECRET_KEY as string)
       jwt.verify(accessToken, secretKey, (err: any, decoded:any) => {

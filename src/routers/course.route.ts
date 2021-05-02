@@ -7,6 +7,7 @@ class CourseRoute {
    router: Router
    constructor() {
       this.router = Router()
+      this.home()
       this.auth()
       this.getAll()
       this.getOne()
@@ -22,12 +23,16 @@ class CourseRoute {
       this.router.use(authJwt.authentication)
    }
 
+   public home(): void {
+      this.router.get('/', courseController.home)
+   }
+
    public getAll(): void {
-      this.router.get('/', courseController.getAll)
+      this.router.get('/getall', courseController.getAll)
    }
 
    public getOne(): void {
-      this.router.get('/:idcourse', courseController.getOne)
+      this.router.get('/getone/:idcourse', courseController.getOne)
    }
 
    public create(): void {

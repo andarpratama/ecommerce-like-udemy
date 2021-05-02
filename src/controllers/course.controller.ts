@@ -7,6 +7,10 @@ import { Topic } from '../models/Topic';
 import { Level } from '../models/Level';
 
 class CourseController {
+   static home(req: Request, res: Response, err: ErrorRequestHandler) {
+      res.status(200).json({ message: 'Course / Home'})
+   }
+
    static async getAll(req: Request, res: Response, err: ErrorRequestHandler) {
       try {
          const oneCourse = await Courses.find()
@@ -38,7 +42,8 @@ class CourseController {
          
       } catch (err) {
          logging.warn('CREATE COURSE', `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
-         res.status(500).json({msg: 'Creating new courses is failed..', error: err})  
+         // res.status(500).json({msg: 'Creating new courses is failed..', error: err})  
+         throw ({name: 'Failed_created'})
       }
    }
    

@@ -7,7 +7,8 @@ class VideoRoute {
    router: Router
    constructor() {
       this.router = Router()
-      // this.auth()
+      this.home()
+      this.auth()
       this.getAll()
       this.create()
       this.getOne()
@@ -17,8 +18,12 @@ class VideoRoute {
       this.router.use(authJwt.authentication)
    }
 
+   public home(): void {
+      this.router.get('/', VideoController.home)
+   }
+
    public getAll(): void {
-      this.router.get('/', VideoController.getAll)
+      this.router.get('/getall', VideoController.getAll)
    }
 
    public create(): void {

@@ -10,6 +10,10 @@ class Auth {
       dotenv.config()
    }
 
+   static home(req: Request, res: Response, err: ErrorRequestHandler) {
+      res.status(200).json({ message: 'Auth / Home'})
+   }
+
    static async register(req: Request, res: Response, err: ErrorRequestHandler) {
       const name:string = req.body.name
       const email:string = req.body.email
@@ -33,7 +37,6 @@ class Auth {
          logging.warn('AUTH REGISTER', `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
          res.status(500).json({ err, data: 'Error' })
          throw ({name: 'Failed_register'})
-         console.log(err)
       }
    }
    

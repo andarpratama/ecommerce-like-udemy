@@ -1,8 +1,13 @@
 import { Request, Response, ErrorRequestHandler } from "express";
 import logging from "../config/logging";
 import { Cart } from "../models/Cart";
+import { User } from "../models/Users";
 
 class CartController {
+
+   static home(req: Request, res: Response, err: ErrorRequestHandler) {
+      res.status(200).json({ message: 'Cart / Home'})
+   }
 
    static async getAll(req:Request, res: Response, err: ErrorRequestHandler) {
       try {
@@ -16,18 +21,17 @@ class CartController {
       }
    }
 
-   static async create(req: Request, res: Response, err: ErrorRequestHandler) {
-      const { courseId } = req.body
+   static async add(req: Request, res: Response, err: ErrorRequestHandler) {
+      const { courseId } = req.params
       const idUser:string = (<any>req).userId
       try {
-         const newCart = await Cart.create({ idUser })
-         const pushCourseID = await Cart.findByIdAndUpdate(newCart?.id, { $push: { 'courseId': courseId } }, { new: true })
+         const pushCourseId = await User.findByIdAndUpdate(idUser, { $push: { 'courseId': courseId } }, { new: true })
          logging.info('ADD COURSE IN CART', `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
-         res.status(201).json({ msg: 'Push new course is success..', pushCourseID: pushCourseID})
+         res.status(201).json({ msg: 'Pull new cart is success..', pushCourseId: pushCourseId})
          
       } catch (err) {
          logging.warn('ADD COURSE IN CART', `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
-         res.status(500).json({msg: 'Push new course is failed..', error: err})  
+         res.status(500).json({msg: 'Pull new cart is failed..', error: err})  
       }
    }
 
@@ -35,7 +39,7 @@ class CartController {
       const { courseId } = req.params
       const idUser:string = (<any>req).userId
       try {
-         const pullCourseId = await Cart.findByIdAndUpdate(courseId, { $pull: { 'courseId': courseId } }, { new: true })
+         const pullCourseId = await User.findByIdAndUpdate(idUser, { $pull: { 'courseId': courseId } }, { new: true })
          logging.info('DELETE COURSE IN CART', `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
          res.status(201).json({ msg: 'Pull new cart is success..',})
          

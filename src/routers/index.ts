@@ -24,7 +24,7 @@ class Routes {
    public home() {
       this.router.get('/', (req: Request, res: Response) => {
          const NAMESPACE:string = 'HOME'
-         logging.info(NAMESPACE, `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
+         // logging.info(NAMESPACE, `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
          res.status(200).json({msg: 'Welcome.. login to get started'})
       })
    }

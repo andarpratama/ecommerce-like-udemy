@@ -6,8 +6,13 @@ class AuthRoute {
    router: Router
    constructor() {
       this.router = Router()
+      this.home()
       this.register()
       this.login()
+   }
+
+   public home(): void {
+      this.router.post('/', authController.home)
    }
 
    public register(): void {
