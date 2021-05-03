@@ -26,15 +26,15 @@ class Auth {
                email: email,
                password: bcrypt.hashSync(password, 8)
             })
-            logging.info('AUTH REGISTER', `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
+            // logging.info('AUTH REGISTER', `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
             res.status(201).json({message: 'Succsess create account..', data: newUser})
          } else {
-            logging.warn('AUTH REGISTER', `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
-            // res.status(500).json({message: err})
-            throw ({name: 'Failed_register'})
+            // logging.warn('AUTH REGISTER', `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
+            res.status(500).json({message: err})
+            // throw ({name: 'Failed_register'})
          }
       } catch (err) {
-         logging.warn('AUTH REGISTER', `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
+         // logging.warn('AUTH REGISTER', `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
          res.status(500).json({ err, data: 'Error' })
          throw ({name: 'Failed_register'})
       }
