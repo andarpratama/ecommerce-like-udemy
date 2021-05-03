@@ -4,7 +4,7 @@ import CourseRoute from './course.route'
 import UserRoute from "./user.route";
 import IRoute from './IRoute'
 import CartRoute from './cart.route';
-import errorHandler from '../middlewares/errorHandler';
+import ErrorHandler from '../middlewares/errorHandler.middleware';
 import authRoute from './auth.route';
 
 class Routes {
@@ -43,8 +43,8 @@ class Routes {
       this.router.use('/cart', CartRoute)
    }
 
-   public errorHandler(): void{
-      this.router.use(errorHandler)
+   public errorHandler(): void {
+      this.router.use(ErrorHandler.handleErrors)
    }
 
 }

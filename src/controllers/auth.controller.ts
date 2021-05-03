@@ -1,9 +1,11 @@
 import {User} from '../models/Users'
-import {Request, Response, ErrorRequestHandler} from 'express'
+import {Request, Response, ErrorRequestHandler, NextFunction} from 'express'
 import dotenv from 'dotenv'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 import logging from '../config/logging'
+import { IUserAuthorize } from '../interface/IUser.authorize';
+import validator from 'validator'
 
 class Auth {
    constructor() {
@@ -14,74 +16,88 @@ class Auth {
       res.status(200).json({ message: 'Auth / Home'})
    }
 
-   static async register(req: Request, res: Response, err: ErrorRequestHandler) {
-      const name:string = req.body.name
-      const email:string = req.body.email
-      const password: string = req.body.password
-      
+   static async register(req: Request, res: Response, next: NextFunction) {
       try {
-         if (name && email && password) {
-            const newUser = await User.create({
-               name: name,
-               email: email,
-               password: bcrypt.hashSync(password, 8)
-            })
-            // logging.info('AUTH REGISTER', `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
+            if (!req.body.name || !req.body.email) {
+               throw { name: 'Name and Email Required' };
+            }
+            if (!validator.isEmail(req.body.email)) {
+               throw { name: 'Invalid Email' };
+            }
+            if (!req.body.password) {
+                throw { name: 'Password Required' };
+            }
+            const newUser = new User({
+                name: req.body.name,
+                email: req.body.email,
+                password: await bcrypt.hash(req.body.password, 8)
+            });
+            await newUser.save();
             res.status(201).json({
                 success: true,
                 message: 'Success Registration',
                 status: 'Created',
-                statusCode: 201,
-                data: newUser
+                statusCode: 201
             });
-         } else {
-            // logging.warn('AUTH REGISTER', `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
-            res.status(500).json({message: err})
-            // throw ({name: 'Failed_register'})
-         }
-      } catch (err) {
-         // logging.warn('AUTH REGISTER', `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
-         res.status(500).json({ err, data: 'Error' })
-         throw ({name: 'Failed_register'})
-      }
-   }
-   
-   static login(req:Request, res:Response){
-      User.findOne({ email: req.body.email })
-      .then((result) => {
-         if (!result) {
-            return res.status(401).json({success: false,msg: 'Users with this email and password is wrong',});
-         }
+        } catch (err) {
+            next(err);
+        }
+    }
+
+
+   static async login(req: Request, res: Response, next: NextFunction) {
+        try {
+            if (!req.body.email) {
+                throw { name: 'Email is Required' };
+            }
+            
+            if (!validator.isEmail(req.body.email)) {
+                  throw { name: 'Invalid Email' };
+            }
+           
+            if (!req.body.password) {
+                throw { name: 'Password is Required' };
+            }
+            const loginUser:any = {
+                username: req.body.username,
+                email: req.body.email
+            };
+            for (const key in loginUser) {
+                if (!loginUser[key]) {
+                    delete loginUser[key];
+                }
+            }
+            const foundUser = await User.findOne(loginUser);
+            // When user not found
+            if (!foundUser) {
+                throw { name: 'Invalid Email' };
+            }
+            const isPasswordValid = await bcrypt.compare(
+                req.body.password,
+                foundUser.password
+            );
+            // When User password is wrong
+            if (!isPasswordValid) {
+                throw { name: 'Invalid Password' };
+            }
+            const secretKey: string = (process.env.SECRET_KEY as string)
          
-         let passwordIsValid = bcrypt.compareSync(req.body.password, result.password);
-         if (!passwordIsValid) {
-            return res.status(401).json({success: false,msg: 'Users with this email and password is wrong',});
-         }
-         
-         const secretKey: string = (process.env.SECRET_KEY as string)
-         
-         let token:any = jwt.sign({ id: result.id }, secretKey , {
-            expiresIn: '1hr',
-         });
-         logging.info('AUTH LOGIN', `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
-         // res.status(200).json({ msg: `Welcome ${result.name}..`, data: result, accessToken: token });
-         res.status(200).json({
+            let token:any = jwt.sign({ id: foundUser.id }, secretKey);
+            res.status(200).json({
                 success: true,
                 message: 'Login Success',
                 data: {
-                    userID: result._id,
+                    userID: foundUser._id,
+                    userName: foundUser.name,
                     bearerToken: `Bearer ${token}`
                 },
                 status: 'OK',
                 statusCode: 200
             });
-      })
-      .catch((err) => {
-         logging.warn('AUTH LOGIN', `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
-         // res.status(500).json({ msg: 'Failed login', data: err });
-         throw ({name: 'Failed_login'})
-      });
-   }
+        } catch (err) {
+            next(err);
+        }
+    }
    
 }
 
