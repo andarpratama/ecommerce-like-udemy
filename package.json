@@ -6,7 +6,7 @@
   "scripts": {
     "build": "rm -rf build/ && tsc",
     "dev": "env-cmd -f ./config/dev.env nodemon ./src/app.ts",
-    "test": "env-cmd -f ./config/test.env jest --verbose --runInBand",
+    "test": "env-cmd -f ./config/test.env jest  --verbose --runInBand --detectOpenHandles",
     "test:watch": "env-cmd ./config/dev.env jest --watch",
     "test:coverage": "env-cmd ./config/dev.env jest --coverage"
   },

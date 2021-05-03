@@ -1,11 +1,29 @@
-import { Request, Response, ErrorRequestHandler } from "express";
+import { Request, Response, ErrorRequestHandler, NextFunction } from "express";
 import { User } from "../models/Users";
 import bcrypt from 'bcrypt'
+import {IUserAuthorize}  from "../interface/IUser.authorize";
 
 class UserController {
    static home(req:Request, res:Response) {
       res.status(200).json({mgs: 'user/home'})
    }
+
+   static async info(req: IUserAuthorize, res: Response, next: NextFunction) {
+        try {
+            const foundUser = await User.findOne({
+                _id: req.params.userID
+            });
+            res.status(200).json({
+                success: true,
+                message: 'User Found',
+                data: foundUser,
+                status: 'OK',
+                statusCode: 200
+            });
+        } catch (err) {
+            next(err);
+        }
+    }
 
    static getUserDetail(req: Request, res: Response) {
       const idUser: string = (<any>req).userId

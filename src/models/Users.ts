@@ -1,16 +1,5 @@
 import mongoose, { Mongoose, Schema } from 'mongoose'
-
-interface IUser {
-   name: string,
-   email: string,
-   password: string,
-   image: string,
-   address: string,
-   city: string,
-   telp: string,
-   cartId: string[],
-   courseId: string[],
-}
+import { IUser } from "../interface/IUser";
 
 interface UserDocument extends mongoose.Document {
    name: string,

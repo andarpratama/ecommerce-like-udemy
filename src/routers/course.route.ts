@@ -8,15 +8,10 @@ class CourseRoute {
    constructor() {
       this.router = Router()
       this.home()
-      this.auth()
+      this.create()
       this.getAll()
       this.getOne()
-      this.create()
-      this.pushtouser()
-      this.pulltouser()
-      this.addCategory()
-      this.addTopic()
-      this.addLevel()
+      this.auth()
    }
 
    public auth(): void {
@@ -37,26 +32,6 @@ class CourseRoute {
 
    public create(): void {
       this.router.post('/create', courseController.create)  
-   }
-
-   public pushtouser(): void {
-      this.router.post('/push/:idcourse', courseController.pushToUser)
-   }
-
-   public pulltouser(): void {
-      this.router.post('/pull/:idcourse', courseController.pullToUser)
-   }
-
-   public addCategory(): void {
-      this.router.post('/category/add/:idcourse', courseController.addCategory)
-   }
-
-   public addTopic(): void {
-      this.router.post('/topic/add/:idcourse', courseController.addTopic)
-   }
-
-   public addLevel(): void {
-      this.router.post('/topic/add/:idcourse', courseController.addLevel)
    }
 
 }

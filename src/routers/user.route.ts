@@ -6,13 +6,17 @@ class UserRoute {
    router: Router
    constructor() {
       this.router = Router()
-      this.auth()
+      this.authJWT()
       this.getAll()
       this.userDetail()
    }
 
-   public auth(): void {
+   public authJWT(): void {
       this.router.use(authJwt.authentication)
+   }
+
+   public info(): void {
+      this.router.get('/info/:userID')
    }
 
    public getAll():void {

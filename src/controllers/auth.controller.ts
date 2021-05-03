@@ -27,7 +27,13 @@ class Auth {
                password: bcrypt.hashSync(password, 8)
             })
             // logging.info('AUTH REGISTER', `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
-            res.status(201).json({message: 'Succsess create account..', data: newUser})
+            res.status(201).json({
+                success: true,
+                message: 'Success Registration',
+                status: 'Created',
+                statusCode: 201,
+                data: newUser
+            });
          } else {
             // logging.warn('AUTH REGISTER', `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
             res.status(500).json({message: err})
@@ -58,7 +64,17 @@ class Auth {
             expiresIn: '1hr',
          });
          logging.info('AUTH LOGIN', `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
-         res.status(200).json({ msg: `Welcome ${result.name}..`, data: result, accessToken: token });
+         // res.status(200).json({ msg: `Welcome ${result.name}..`, data: result, accessToken: token });
+         res.status(200).json({
+                success: true,
+                message: 'Login Success',
+                data: {
+                    userID: result._id,
+                    bearerToken: `Bearer ${token}`
+                },
+                status: 'OK',
+                statusCode: 200
+            });
       })
       .catch((err) => {
          logging.warn('AUTH LOGIN', `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);

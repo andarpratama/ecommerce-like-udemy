@@ -1,12 +1,11 @@
 import {Router, Request, Response} from 'express'
 import logging from '../config/logging'
-import AuthRoute from './auth.route'
 import CourseRoute from './course.route'
 import UserRoute from "./user.route";
-import VideoRoute from "./video.route";
 import IRoute from './IRoute'
 import CartRoute from './cart.route';
 import errorHandler from '../middlewares/errorHandler';
+import authRoute from './auth.route';
 
 class Routes {
    router: Router
@@ -16,7 +15,6 @@ class Routes {
       this.auth()
       this.course()
       this.user()
-      this.video()
       this.cart()
       this.errorHandler()
    }
@@ -30,7 +28,7 @@ class Routes {
    }
 
    public auth(): void {
-      this.router.use('/auth', AuthRoute)
+      this.router.use('/auth', authRoute)
    }
 
    public course(): void {
@@ -39,10 +37,6 @@ class Routes {
 
    public user(): void {
       this.router.use('/user', UserRoute)
-   }
-
-   public video(): void {
-      this.router.use('/video', VideoRoute)
    }
 
    public cart(): void {
