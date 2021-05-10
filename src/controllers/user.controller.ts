@@ -1,6 +1,6 @@
 import { Request, Response, ErrorRequestHandler, NextFunction } from "express";
 import { User } from "../models/Users";
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 import {IUserAuthorize}  from "../interface/IUser.authorize";
 
 class UserController {

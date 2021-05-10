@@ -2,7 +2,7 @@ import {User} from '../models/Users'
 import {Request, Response, ErrorRequestHandler, NextFunction} from 'express'
 import dotenv from 'dotenv'
 import jwt from 'jsonwebtoken'
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 import logging from '../config/logging'
 import { IUserAuthorize } from '../interface/IUser.authorize';
 import validator from 'validator'

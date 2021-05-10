@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Users_1 = require("../models/Users");
 const dotenv_1 = __importDefault(require("dotenv"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const bcrypt_1 = __importDefault(require("bcrypt"));
+const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const validator_1 = __importDefault(require("validator"));
 class Auth {
     constructor() {
@@ -39,7 +39,7 @@ class Auth {
                 const newUser = new Users_1.User({
                     name: req.body.name,
                     email: req.body.email,
-                    password: yield bcrypt_1.default.hash(req.body.password, 8)
+                    password: yield bcryptjs_1.default.hash(req.body.password, 8)
                 });
                 yield newUser.save();
                 res.status(201).json({
@@ -80,7 +80,7 @@ class Auth {
                 if (!foundUser) {
                     throw { name: 'Invalid Email' };
                 }
-                const isPasswordValid = yield bcrypt_1.default.compare(req.body.password, foundUser.password);
+                const isPasswordValid = yield bcryptjs_1.default.compare(req.body.password, foundUser.password);
                 // When User password is wrong
                 if (!isPasswordValid) {
                     throw { name: 'Invalid Password' };

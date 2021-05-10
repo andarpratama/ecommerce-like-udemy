@@ -11,8 +11,8 @@ const dotenv_1 = __importDefault(require("dotenv"));
 class App {
     constructor() {
         this.app = express_1.default();
-        this.route();
         this.plugin();
+        this.route();
         dotenv_1.default.config();
     }
     plugin() {
