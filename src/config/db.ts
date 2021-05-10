@@ -1,10 +1,15 @@
 import mongoose from 'mongoose'
 import logging from './logging'
+import dotenv from "dotenv";
 
 
 class mongooDB {
+   constructor() {
+      dotenv.config()
+   }
+   
    public connectDB(): void {
-      const pathURL:string = process.env.DB_URL!
+      const pathURL:string = process.env.DB_URL as string
       const connectOption = {
          useCreateIndex: true,
          useNewUrlParser: true,
