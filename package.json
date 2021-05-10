@@ -5,7 +5,7 @@
   "main": "build/app.js",
   "scripts": {
     "build": "rm -rf build/ && tsc",
-    "start": "env-cmd -f ./config/dev.env node ./build/app.js",
+    "start": "node ./build/app.js",
     "dev": "env-cmd -f ./config/dev.env nodemon ./src/app.ts",
     "test": "env-cmd -f ./config/test.env jest  ---watchAll --runInBand",
     "test:watch": "env-cmd ./config/dev.env jest --watch",
