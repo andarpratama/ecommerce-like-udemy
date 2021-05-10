@@ -2,7 +2,7 @@
   "name": "assign3-backend",
   "version": "1.0.0",
   "description": "Assignment3",
-  "main": "build/app.js",
+  "main": "app.ts",
   "scripts": {
     "start": "node ./build/app.js",
     "dev": "env-cmd -f ./config/dev.env nodemon ./src/app.ts",
