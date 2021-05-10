@@ -4,7 +4,6 @@
   "description": "Assignment3",
   "main": "build/app.js",
   "scripts": {
-    "build": "rm -rf build/ && tsc",
     "start": "node ./build/app.js",
     "dev": "env-cmd -f ./config/dev.env nodemon ./src/app.ts",
     "test": "env-cmd -f ./config/test.env jest  ---watchAll --runInBand",
