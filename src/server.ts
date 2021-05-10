@@ -5,20 +5,22 @@ import config from './config/config';
 import ConnectMongoDB from './config/db'
 import Routes from './routers/index'
 import cors from "cors";
+import dotenv from 'dotenv'
 
 class App {
    public app: Application
    constructor() { 
+      dotenv.config()
       this.app = express()
-      this.plugin()
       this.route()
+      this.plugin()
    }
-
+   
    protected plugin(): void{
+      ConnectMongoDB()
       this.app.use(cors())
       this.app.use(express.json())
       this.app.use(express.urlencoded({ extended: true }))
-      ConnectMongoDB()
 
       this.app.use((req : Request, res: Response, next: NextFunction) => {
          res.setHeader("Access-Control-Allow-Origin", "*");

@@ -4,8 +4,13 @@ import logging from './logging'
 
 class mongooDB {
    public connectDB(): void {
-      const pathURL = process.env.DB_URL!
-      const connectOption = { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false}
+      const pathURL:string = process.env.DB_URL!
+      const connectOption = {
+         useCreateIndex: true,
+         useNewUrlParser: true,
+         useUnifiedTopology: true,
+         useFindAndModify: false,  
+      }
       mongoose.connect(pathURL, connectOption)
 
       const db = mongoose.connection
