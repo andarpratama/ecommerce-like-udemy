@@ -89,7 +89,7 @@ class Auth {
                 data: {
                     userID: foundUser._id,
                     userName: foundUser.name,
-                    bearerToken: `Bearer ${token}`
+                    bearerToken: token
                 },
                 status: 'OK',
                 statusCode: 200

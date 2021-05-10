@@ -9,7 +9,6 @@ class CartRoute {
       this.router = Router()
       this.home()
       this.auth()
-      this.getAll()
       this.add()
       this.delete()
    }
@@ -20,10 +19,6 @@ class CartRoute {
 
    public home(): void {
       this.router.get('/', CartController.home)
-   }
-
-   public getAll(): void {
-      this.router.get('/getall', CartController.getAll)
    }
 
    public add(): void {

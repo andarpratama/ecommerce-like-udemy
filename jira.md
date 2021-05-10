@@ -112,9 +112,54 @@
       - Looping data in card component
 
 # Profil page
-   + 
+   + Selector product component
+      - Setup selector <navigation>
+      - Setup selector <footer>
+   + Filter Component
+      - Generate filter component
+      - Make HTML structure
+      - Styling with tailwind
+      - Mobile responsive
+   + Card Product Component
+      - Generate component card
+      - Make HTML structure
+      - Styling with tailwind
+      - Mobile responsive
+   + Container Product
+      - Generate container product component
+      - Make HTML structure
+      - Styling with tailwind
+      - Mobile responsive
+      - Generate module card (course) and make interface
+      - Generate service courses and make dummy data course product
+      - Import service in component
+      - Looping data in card component
 
 # Detail product page
+   + Content Detailpage Component
+      - Generate content detailpage component
+      - Make HTML structure
+      - Styling with tailwind
+      - Mobile responsive
+   + Main Detailpage Component
+      - Generate main detailpage component
+      - Make HTML structure
+      - Styling with tailwind
+      - Mobile responsive
+   + Preview Detailpage Component
+      - Generate preview detailpage component
+      - Make HTML structure
+      - Styling with tailwind
+      - Mobile responsive
+   + Header Detailpage Component
+      - Generate header detailpage component
+      - Make HTML structure
+      - Styling with tailwind
+      - Mobile responsive
+   + Selector detailpage component
+      - Setup selector <navigation>
+      - Setup main-detailpage selecteor <main-detailpage>
+      - Setup selector <footer>
 
 # Cart page
 

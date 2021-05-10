@@ -1,18 +1,6 @@
 import mongoose, { Schema } from 'mongoose'
 import { ICourse } from "../interface/ICourse";
-
-interface CourseDocument extends mongoose.Document {
-   title: string,
-   image: string,
-   topic: string,
-   level: string,
-   price: number,
-   hours: number,
-   students: number,
-   instructor: string,
-   category: string,
-   devCategory: string
-}
+import { CourseDocument } from "../interface/ICourse.mongoose";
 
 interface CourseModelInterface extends mongoose.Model<CourseDocument> {
    build(attr: ICourse): CourseDocument

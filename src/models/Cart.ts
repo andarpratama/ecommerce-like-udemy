@@ -1,10 +1,6 @@
 import mongoose, { Schema } from 'mongoose'
+import { ICart } from "../interface/ICart";
 
-interface ICart {
-   userId: string,
-   courseId: string[],
-   coupon: string
-}
 
 interface CartDocument extends mongoose.Document {
    userId: string,

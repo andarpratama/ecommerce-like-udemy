@@ -29,6 +29,21 @@ class CourseController {
       }
    }
 
+   static async filter(req: Request, res: Response, err: ErrorRequestHandler) {
+      const keyword: string = (<any>req).params.keyword
+      
+      try {
+         let foundCourse = await Courses.find()
+         let filterCourse = foundCourse.filter((course) => {
+            return course.devCategory === keyword
+         })
+         
+         res.status(200).json({ message: 'Success get this one course..', data: filterCourse })
+      } catch (err) {
+         res.status(200).json({ message: 'Failed get this one course..', data: err })
+      }
+   }
+
    static async create(req: Request, res: Response, err: ErrorRequestHandler) {
       const { title, image, instructor, topic, level, category, devCategory } = req.body
       const price = parseInt(req.body.price)

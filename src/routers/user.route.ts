@@ -7,6 +7,7 @@ class UserRoute {
    constructor() {
       this.router = Router()
       this.authJWT()
+      this.info()
       this.getAll()
       this.userDetail()
    }
@@ -16,7 +17,7 @@ class UserRoute {
    }
 
    public info(): void {
-      this.router.get('/info/:userID')
+      this.router.get('/info/:userID', userController.info)
    }
 
    public getAll():void {

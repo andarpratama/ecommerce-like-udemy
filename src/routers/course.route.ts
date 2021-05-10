@@ -11,6 +11,7 @@ class CourseRoute {
       this.create()
       this.getAll()
       this.getOne()
+      this.filter()
       this.auth()
    }
 
@@ -28,6 +29,10 @@ class CourseRoute {
 
    public getOne(): void {
       this.router.get('/getone/:idcourse', courseController.getOne)
+   }
+
+   public filter(): void {
+      this.router.get('/filter/devcategory/:keyword', courseController.filter)
    }
 
    public create(): void {

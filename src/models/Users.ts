@@ -1,17 +1,6 @@
 import mongoose, { Mongoose, Schema } from 'mongoose'
 import { IUser } from "../interface/IUser";
-
-interface UserDocument extends mongoose.Document {
-   name: string,
-   email: string,
-   password: string,
-   image: string,
-   address: string,
-   city: string,
-   telp: string,
-   cartId: string[],
-   courseId: string[],
-}
+import { UserDocument } from "../interface/IUser.mongoose";
 
 interface UserModelInterface extends mongoose.Model<UserDocument> {
    build(attr: IUser): UserDocument

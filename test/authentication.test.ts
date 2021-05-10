@@ -1,4 +1,3 @@
-jest.useFakeTimers()
 import { IUser } from "../src/interface/IUser";
 import { User } from "../src/models/Users";
 import { loginUser, registerUser } from "./helper/authentication.helper";
