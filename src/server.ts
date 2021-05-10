@@ -1,7 +1,5 @@
 import {Application, NextFunction, Request, Response} from 'express'
 import express from 'express'
-import logging from './config/logging';
-import config from './config/config';
 import ConnectMongoDB from './config/db'
 import Routes from './routers/index'
 import cors from "cors";
@@ -15,7 +13,7 @@ class App {
       this.route()
       this.plugin()
    }
-   
+
    protected plugin(): void{
       ConnectMongoDB()
       this.app.use(cors())
