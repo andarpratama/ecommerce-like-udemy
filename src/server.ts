@@ -9,8 +9,8 @@ class App {
    public app: Application
    constructor() { 
       this.app = express()
-      this.route()
       this.plugin()
+      this.route()
       dotenv.config()
    }
 
