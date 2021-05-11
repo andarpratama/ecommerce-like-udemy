@@ -15,7 +15,7 @@ class AuthRoute {
         this.errorHandler;
     }
     home() {
-        this.router.post('/', auth_controller_1.default.home);
+        this.router.get('/', auth_controller_1.default.home);
     }
     register() {
         this.router.post('/register', auth_controller_1.default.register);
