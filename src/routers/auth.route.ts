@@ -14,7 +14,7 @@ class AuthRoute {
    }
 
    public home(): void {
-      this.router.post('/', authController.home)
+      this.router.get('/', authController.home)
    }
 
    public register(): void {

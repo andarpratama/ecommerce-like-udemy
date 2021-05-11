@@ -165,6 +165,20 @@
 
 # Checkout page
 
-# Register
-
-# Login
+# Auth
+   + Auth module and routing
+      - Generate Module and routing
+      - Setup module and routing
+      - Import Auth Module in AppModule
+   + Login Component
+      - Generate LoginComponent
+      - Make HTML structure
+      - Styling with tailwind
+      - Mobile Responsive
+      - Generate Form Module Login
+   + Register Component
+      - Generate RegisterComponent
+      - Make HTML structure
+      - Styling with tailwind
+      - Mobile Responsive
+      - Generate Form Module Register
