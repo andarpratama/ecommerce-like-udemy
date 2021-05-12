@@ -10,6 +10,7 @@ interface ICourse extends Document {
    students: number,
    instructor: string,
    category: string,
+   devCategory: string
 }
 
 export {ICourse}
