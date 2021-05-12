@@ -4,4 +4,4 @@ import config from './config/config';
 
 const app = new App().app
 const NAMESPACE:string = 'SERVER'
-app.listen(process.env.PORT, () => logging.info(NAMESPACE, `${process.env.PORT},  ${process.env.PORT}` + `Server is running http://${config.server.hostname}:${process.env.PORT}}`))
+app.listen(process.env.PORT, () => logging.info(NAMESPACE, `Server is running http://${config.server.hostname}:${process.env.PORT}`))

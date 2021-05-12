@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node build/app.js",
     "dev": "env-cmd -f ./config/dev.env nodemon ./src/app.ts",
-    "test": "env-cmd -f ./config/test.env jest  ---watchAll --runInBand",
+    "test": "env-cmd -f ./config/test.env jest --runInBand",
     "test:watch": "env-cmd ./config/dev.env jest --watch",
     "test:coverage": "env-cmd ./config/dev.env jest --coverage"
   },

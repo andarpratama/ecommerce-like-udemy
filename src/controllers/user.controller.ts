@@ -16,7 +16,7 @@ class UserController {
             res.status(200).json({
                 success: true,
                 message: 'User Found',
-                data: foundUser,
+                data: 'foundUser',
                 status: 'OK',
                 statusCode: 200
             });
@@ -27,7 +27,6 @@ class UserController {
 
    static getUserDetail(req: Request, res: Response) {
       const idUser: string = (<any>req).userId
-      console.log(idUser)
       User.findById(idUser)
          .then((result) => {
             res.status(201).json({msg: 'Detail user..', data: result})

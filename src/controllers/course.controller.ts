@@ -12,7 +12,12 @@ class CourseController {
    static async getAll(req: Request, res: Response, err: ErrorRequestHandler) {
       try {
          const courses = await Courses.find()
-         res.status(200).json({ message: 'Success get all course..', totalData: courses.length, data: courses })
+         res.status(200).json({
+            success: true,
+            message: 'Found all markets',
+            data: courses,
+            statusCode: 200
+         })
       } catch (err) {
          res.status(200).json({ message: 'Failed get all course..', data: err })
       }
@@ -23,7 +28,12 @@ class CourseController {
       
       try {
          const oneCourse = await Courses.findById(idCourse)
-         res.status(200).json({ message: 'Success get this one course..', data: oneCourse })
+         res.status(200).json({
+            success: true,
+            message: 'Found spesific markets',
+            data: oneCourse,
+            statusCode: 200
+          })
       } catch (err) {
          res.status(200).json({ message: 'Failed get this one course..', data: err })
       }
@@ -66,7 +76,12 @@ class CourseController {
           })
          
          logging.info('CREATE COURSE', `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
-         res.status(201).json({ msg: 'Creating new courses is success..', data: createCourse })
+         res.status(201).json({
+            success: true,
+            message: 'Success create one course',
+            data: createCourse,
+            statusCode: 201
+          })
          
       } catch (err) {
          logging.warn('CREATE COURSE', `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);

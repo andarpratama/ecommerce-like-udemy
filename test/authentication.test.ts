@@ -65,6 +65,7 @@ describe('POST /users/login - User Login Endpoint', () => {
             data: {
                 userID: userLogin.body.data.userID,
                 userName: userLogin.body.data.userName,
+                expiresIn: 3600,
                 bearerToken: userLogin.body.data.bearerToken
             },
             status: 'OK',

@@ -28,15 +28,11 @@ describe('GET /users/:userID/info - User Info Endpoint', () => {
     });
 
     it('Should be able to see user info', async () => {
-        const userInfo = await request(app)
-        .get(`/user/info/${userLoginResult.body.data.userID}`)
-        .set('Authorization', 'bearer ' + userLoginResult.body.data.bearerToken);
-      // expect(userInfo.status).toEqual(200);
-      // console.log(userLoginResult.body.data.bearerToken)
-         console.log(userInfo.status)
-         console.log(userInfo.body)
-         expect(200);
-        
+        const userInfo = await infoUser(
+            userLoginResult.body.data.userID,
+            userLoginResult.body.data.bearerToken
+        );
+        expect(200);
     });
    
 });

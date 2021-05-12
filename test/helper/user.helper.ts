@@ -7,7 +7,7 @@ const infoUser = async (userID: string, bearerToken: string) => {
     const userInfo = await request(app)
         .get(`/user/info/${userID}`)
         .set('Authorization', `${bearerToken}`);
-        console.log(`${bearerToken}`)
+        console.log(bearerToken)
     return userInfo;
 };
 
