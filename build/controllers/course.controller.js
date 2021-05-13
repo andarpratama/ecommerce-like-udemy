@@ -22,7 +22,12 @@ class CourseController {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const courses = yield Courses_1.Courses.find();
-                res.status(200).json({ message: 'Success get all course..', totalData: courses.length, data: courses });
+                res.status(200).json({
+                    success: true,
+                    message: 'Found all markets',
+                    data: courses,
+                    statusCode: 200
+                });
             }
             catch (err) {
                 res.status(200).json({ message: 'Failed get all course..', data: err });
@@ -34,7 +39,12 @@ class CourseController {
             const idCourse = req.params.idcourse;
             try {
                 const oneCourse = yield Courses_1.Courses.findById(idCourse);
-                res.status(200).json({ message: 'Success get this one course..', data: oneCourse });
+                res.status(200).json({
+                    success: true,
+                    message: 'Found spesific markets',
+                    data: oneCourse,
+                    statusCode: 200
+                });
             }
             catch (err) {
                 res.status(200).json({ message: 'Failed get this one course..', data: err });
@@ -77,7 +87,12 @@ class CourseController {
                     devCategory: devCategory
                 });
                 logging_1.default.info('CREATE COURSE', `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
-                res.status(201).json({ msg: 'Creating new courses is success..', data: createCourse });
+                res.status(201).json({
+                    success: true,
+                    message: 'Success create one course',
+                    data: createCourse,
+                    statusCode: 201
+                });
             }
             catch (err) {
                 logging_1.default.warn('CREATE COURSE', `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);

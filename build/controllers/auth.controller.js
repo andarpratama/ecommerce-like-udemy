@@ -93,7 +93,8 @@ class Auth {
                     data: {
                         userID: foundUser._id,
                         userName: foundUser.name,
-                        bearerToken: token
+                        bearerToken: `Bearer ${token}`,
+                        expiresIn: 3600,
                     },
                     status: 'OK',
                     statusCode: 200

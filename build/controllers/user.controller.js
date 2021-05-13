@@ -35,7 +35,6 @@ class UserController {
     }
     static getUserDetail(req, res) {
         const idUser = req.userId;
-        console.log(idUser);
         Users_1.User.findById(idUser)
             .then((result) => {
             res.status(201).json({ msg: 'Detail user..', data: result });

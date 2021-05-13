@@ -8,4 +8,4 @@ const logging_1 = __importDefault(require("./config/logging"));
 const config_1 = __importDefault(require("./config/config"));
 const app = new server_1.default().app;
 const NAMESPACE = 'SERVER';
-app.listen(process.env.PORT, () => logging_1.default.info(NAMESPACE, `${process.env.PORT},  ${process.env.PORT}` + `Server is running http://${config_1.default.server.hostname}:${process.env.PORT}}`));
+app.listen(process.env.PORT, () => logging_1.default.info(NAMESPACE, `Server is running http://${config_1.default.server.hostname}:${process.env.PORT}`));
