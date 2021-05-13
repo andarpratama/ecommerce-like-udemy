@@ -22,5 +22,11 @@ const getOne = async (userID:string) => {
     return foundCourse;
 };
 
+const update = async (userID:string) => {
+    const foundCourse = await request(app)
+        .put(`/course/${userID}`)
+    return foundCourse;
+};
 
-export { getAll , getOne, createCourse };
+
+export { getAll , getOne, createCourse, update };

@@ -9,20 +9,20 @@ class UserController {
    }
 
    static async info(req: IUserAuthorize, res: Response, next: NextFunction) {
-        try {
-            const foundUser = await User.findOne({
-                _id: req.params.userID
-            });
-            res.status(200).json({
-                success: true,
-                message: 'User Found',
-                data: 'foundUser',
-                status: 'OK',
-                statusCode: 200
-            });
-        } catch (err) {
-            next(err);
-        }
+      try {
+         const foundUser = await User.findOne({
+               _id: req.params.userID
+         });
+         res.status(200).json({
+               success: true,
+               message: 'User Found',
+               data: foundUser,
+               status: 'OK',
+               statusCode: 200
+         });
+      } catch (err) {
+         next(err);
+      }
     }
 
    static getUserDetail(req: Request, res: Response) {
