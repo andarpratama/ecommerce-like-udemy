@@ -46,8 +46,8 @@ const userSchema = new mongoose_1.Schema({
     telp: {
         type: String
     },
-    cardId: [{
-            type: mongoose_1.default.Types.ObjectId, ref: 'Cart'
+    cartId: [{
+            type: mongoose_1.default.Types.ObjectId, ref: 'Course'
         }],
     courseId: [{
             type: mongoose_1.default.Types.ObjectId, ref: 'Course'

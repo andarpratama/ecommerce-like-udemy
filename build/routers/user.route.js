@@ -13,6 +13,7 @@ class UserRoute {
         this.info();
         this.getAll();
         this.userDetail();
+        this.update();
     }
     authJWT() {
         this.router.use(authJwt_1.default.authentication);
@@ -25,6 +26,9 @@ class UserRoute {
     }
     userDetail() {
         this.router.get('/detail', user_controller_1.default.getUserDetail);
+    }
+    update() {
+        this.router.get('/update', user_controller_1.default.update);
     }
 }
 exports.default = new UserRoute().router;

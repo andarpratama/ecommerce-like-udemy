@@ -51,7 +51,7 @@ class CourseController {
             }
         });
     }
-    static filter(req, res, err) {
+    static filterDevcategory(req, res, err) {
         return __awaiter(this, void 0, void 0, function* () {
             const keyword = req.params.keyword;
             try {
@@ -59,7 +59,32 @@ class CourseController {
                 let filterCourse = foundCourse.filter((course) => {
                     return course.devCategory === keyword;
                 });
-                res.status(200).json({ message: 'Success get this one course..', data: filterCourse });
+                res.status(200).json({
+                    success: true,
+                    message: `Found course with dev-category ${keyword}`,
+                    data: filterCourse,
+                    statusCode: 200
+                });
+            }
+            catch (err) {
+                res.status(200).json({ message: 'Failed get this one course..', data: err });
+            }
+        });
+    }
+    static filterCategory(req, res, err) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const keyword = req.params.keyword;
+            try {
+                let foundCourse = yield Courses_1.Courses.find();
+                let filterCourse = foundCourse.filter((course) => {
+                    return course.category === keyword;
+                });
+                res.status(200).json({
+                    success: true,
+                    message: `Found course with category ${keyword}`,
+                    data: filterCourse,
+                    statusCode: 200
+                });
             }
             catch (err) {
                 res.status(200).json({ message: 'Failed get this one course..', data: err });
