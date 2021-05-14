@@ -31,8 +31,8 @@ const userSchema = new Schema({
    telp: {
       type: String
    },
-   cardId: [{
-      type: mongoose.Types.ObjectId, ref: 'Cart'
+   cartId: [{
+      type: mongoose.Types.ObjectId, ref: 'Course'
    }],
    courseId: [{
       type: mongoose.Types.ObjectId, ref: 'Course'
