@@ -1,4 +1,4 @@
-import { getAll, getOne, createCourse } from "./helper/course.helper";
+import { getAll, getOne, getFilterCourseFrontend, getFilterCategory, createCourse, update } from "./helper/course.helper";
 import request from "supertest";
 import App from "../src/server";
 import { ICourse } from "../src/interface/ICourse";
@@ -31,7 +31,7 @@ describe('POST /course- Course POST Endpoint', () => {
     });
 });
 
-describe('GET /course/getall- Course Endpoint', () => {
+describe('GET /course/- Course Endpoint', () => {
    let foundCourse: request.Response;
    beforeEach(async () => {
       const createdCourse = await createCourse({
@@ -84,6 +84,68 @@ describe('GET /course/getall- Course Endpoint', () => {
             statusCode: 200
         });
     });
+   
+   
+   it('Should be able to see all course with dev-category to equals frontend', async () => {
+        const keyword = 'frontend';
+        const foundAllCourse = await getFilterCourseFrontend(keyword);
+        expect(foundAllCourse.status).toEqual(200);
+        expect(foundAllCourse.body).toEqual({
+            success: true,
+            message: `Found course with dev-category ${keyword}`,
+            data: foundAllCourse.body.data,
+            statusCode: 200
+        });
+   });
+
+   it('Should be able to see all course with dev-category to equals backend', async () => {
+        const keyword = 'backend';
+        const foundAllCourse = await getFilterCourseFrontend(keyword);
+        expect(foundAllCourse.status).toEqual(200);
+        expect(foundAllCourse.body).toEqual({
+            success: true,
+            message: `Found course with dev-category ${keyword}`,
+            data: foundAllCourse.body.data,
+            statusCode: 200
+        });
+   });
+
+   it('Should be able to see all course with dev-category to equals desktop', async () => {
+        const keyword = 'desktop';
+        const foundAllCourse = await getFilterCourseFrontend(keyword);
+        expect(foundAllCourse.status).toEqual(200);
+        expect(foundAllCourse.body).toEqual({
+            success: true,
+            message: `Found course with dev-category ${keyword}`,
+            data: foundAllCourse.body.data,
+            statusCode: 200
+        });
+   });
+
+   it('Should be able to see all course with category to equals css', async () => {
+        const keyword = 'css';
+        const foundAllCourse = await getFilterCategory(keyword);
+        expect(foundAllCourse.status).toEqual(200);
+        expect(foundAllCourse.body).toEqual({
+            success: true,
+            message: `Found course with category ${keyword}`,
+            data: foundAllCourse.body.data,
+            statusCode: 200
+        });
+   });
+
+   it('Should be able to see all course with category to equals css', async () => {
+        const keyword = 'php';
+        const foundAllCourse = await getFilterCategory(keyword);
+        expect(foundAllCourse.status).toEqual(200);
+        expect(foundAllCourse.body).toEqual({
+            success: true,
+            message: `Found course with category ${keyword}`,
+            data: foundAllCourse.body.data,
+            statusCode: 200
+        });
+   });
+   
 });
 
 describe('PUT /course/courseID- Course Endpoint', () => {

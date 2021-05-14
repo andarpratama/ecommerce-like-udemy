@@ -11,12 +11,8 @@ class CourseRoute {
       this.create()
       this.getAll()
       this.getOne()
-      this.filter()
-      this.auth()
-   }
-
-   public auth(): void {
-      this.router.use(authJwt.authentication)
+      this.filterDevcategory()
+      this.filterCategory()
    }
 
    public home(): void {
@@ -31,8 +27,12 @@ class CourseRoute {
       this.router.get('/getone/:idcourse', courseController.getOne)
    }
 
-   public filter(): void {
-      this.router.get('/filter/devcategory/:keyword', courseController.filter)
+   public filterDevcategory(): void {
+      this.router.get('/filter/devcategory/:keyword', courseController.filterDevcategory)
+   }
+
+   public filterCategory(): void {
+      this.router.get('/filter/category/:keyword', courseController.filterCategory)
    }
 
    public create(): void {

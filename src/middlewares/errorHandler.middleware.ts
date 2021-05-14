@@ -84,40 +84,16 @@ class ErrorHandler {
                     'Access Token No Longer Registered: The access token is no longer registered, please register and re-login to get a new access token';
                 status = 'Unauthorized';
                 break;
-            case 'Forbidden Access':
-                statusCode = 403;
-                message =
-                    'Forbidden Access: Sorry, access is restricted, make sure you use your own access token';
-                status = 'Forbidden';
-                break;
-            case 'Insufficient Cost':
-                statusCode = 409;
-                message =
-                    'Insufficient Cost: Your golds and foods are not enough to build the building';
-                status = 'Conflict';
-                break;
-            case 'Reached The Maximum Limit':
-                statusCode = 409;
-                message =
-                    'Reached The Maximum Limit: The number of these buildings has reached its maximum limit';
-                status = 'Conflict';
-                break;
-            case 'Soldiers Required':
+                
+            // User controller
+            case 'All Input Required':
                 statusCode = 422;
                 message =
-                    'Soldiers Required: The number of your soldiers is required to perform this action';
+                    'All Input Required: Please input all profile data';
                 status = 'Unprocessable Entity';
                 break;
-            case `Can't Attack Yourself`:
-                statusCode = 409;
-                message = `Can't Attack Yourself: you can't attack yourself`;
-                status = 'Conflict';
-                break;
-            case `Can't Attack This User`:
-                statusCode = 409;
-                message = `Can't Attack This User: You cannot attack this user because this user's army is less than 50 or your army is less than 1`;
-                status = 'Conflict';
-                break;
+                
+          
             case 'JsonWebTokenError':
                 statusCode = 401;
                 message =

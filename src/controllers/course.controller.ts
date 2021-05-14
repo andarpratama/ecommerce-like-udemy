@@ -1,8 +1,6 @@
 import {Courses} from '../models/Courses'
 import { Request, Response, ErrorRequestHandler } from 'express'
 import  logging  from "../config/logging";
-import { User } from '../models/Users';
-import { Category } from '../models/Category';
 
 class CourseController {
    static home(req: Request, res: Response, err: ErrorRequestHandler) {
@@ -39,7 +37,7 @@ class CourseController {
       }
    }
 
-   static async filter(req: Request, res: Response, err: ErrorRequestHandler) {
+   static async filterDevcategory(req: Request, res: Response, err: ErrorRequestHandler) {
       const keyword: string = (<any>req).params.keyword
       
       try {
@@ -48,7 +46,32 @@ class CourseController {
             return course.devCategory === keyword
          })
          
-         res.status(200).json({ message: 'Success get this one course..', data: filterCourse })
+         res.status(200).json({
+            success: true,
+            message: `Found course with dev-category ${keyword}`,
+            data: filterCourse,
+            statusCode: 200
+          })
+      } catch (err) {
+         res.status(200).json({ message: 'Failed get this one course..', data: err })
+      }
+   }
+
+   static async filterCategory(req: Request, res: Response, err: ErrorRequestHandler) {
+      const keyword: string = (<any>req).params.keyword
+      
+      try {
+         let foundCourse = await Courses.find()
+         let filterCourse = foundCourse.filter((course) => {
+            return course.category === keyword
+         })
+         
+         res.status(200).json({
+            success: true,
+            message: `Found course with category ${keyword}`,
+            data: filterCourse,
+            statusCode: 200
+          })
       } catch (err) {
          res.status(200).json({ message: 'Failed get this one course..', data: err })
       }

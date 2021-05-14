@@ -1,6 +1,5 @@
 import request from "supertest";
 import App from "../../src/server";
-import { IUser } from "../../src/interface/IUser";
 import { ICourse } from "../../src/interface/ICourse";
 const app = new App().app
 
@@ -13,6 +12,18 @@ const createCourse = async (data: ICourse) => {
 const getAll = async () => {
     const foundCourse = await request(app)
         .get(`/course/getall`)
+    return foundCourse;
+};
+
+const getFilterCourseFrontend = async (keyword:string) => {
+    const foundCourse = await request(app)
+        .get(`/course/filter/devcategory/${keyword}`)
+    return foundCourse;
+};
+
+const getFilterCategory = async (keyword:string) => {
+    const foundCourse = await request(app)
+        .get(`/course/filter/category/${keyword}`)
     return foundCourse;
 };
 
@@ -29,4 +40,4 @@ const update = async (userID:string) => {
 };
 
 
-export { getAll , getOne, createCourse, update };
+export { getAll , getOne, getFilterCourseFrontend, getFilterCategory, createCourse, update };

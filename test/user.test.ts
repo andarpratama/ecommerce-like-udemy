@@ -3,7 +3,6 @@ import { IUser } from "../src/interface/IUser";
 import { User } from "../src/models/Users";
 import { loginUser, registerUser } from "./helper/authentication.helper";
 import { infoUser, editUser } from "./helper/user.helper";
-import mongoose from 'mongoose'
 import App from "../src/server";
 const app = new App().app
 

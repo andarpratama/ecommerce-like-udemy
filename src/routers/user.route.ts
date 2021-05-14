@@ -10,6 +10,7 @@ class UserRoute {
       this.info()
       this.getAll()
       this.userDetail()
+      this.update()
    }
 
    public authJWT(): void {
@@ -26,6 +27,10 @@ class UserRoute {
 
    public userDetail(): void {
       this.router.get('/detail', userController.getUserDetail)
+   }
+
+   public update(): void {
+      this.router.get('/update', userController.update)
    }
 
 }
