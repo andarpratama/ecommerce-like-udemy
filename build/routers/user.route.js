@@ -9,7 +9,8 @@ const authJwt_1 = __importDefault(require("../middlewares/authJwt"));
 class UserRoute {
     constructor() {
         this.router = express_1.Router();
-        // this.authJWT()
+        this.infoNoAuth();
+        this.authJWT();
         this.info();
         this.getAll();
         this.userDetail();
@@ -20,6 +21,9 @@ class UserRoute {
     }
     info() {
         this.router.get('/info/:userID', user_controller_1.default.info);
+    }
+    infoNoAuth() {
+        this.router.get('noauth/info/:userID', user_controller_1.default.info);
     }
     getAll() {
         this.router.get('/', user_controller_1.default.home);
