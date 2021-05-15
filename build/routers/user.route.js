@@ -9,7 +9,7 @@ const authJwt_1 = __importDefault(require("../middlewares/authJwt"));
 class UserRoute {
     constructor() {
         this.router = express_1.Router();
-        this.authJWT();
+        // this.authJWT()
         this.info();
         this.getAll();
         this.userDetail();

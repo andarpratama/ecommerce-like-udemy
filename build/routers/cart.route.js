@@ -10,7 +10,7 @@ class CartRoute {
     constructor() {
         this.router = express_1.Router();
         this.home();
-        this.auth();
+        // this.auth()
         this.add();
         this.delete();
     }

@@ -6,7 +6,7 @@ class UserRoute {
    router: Router
    constructor() {
       this.router = Router()
-      this.authJWT()
+      // this.authJWT()
       this.info()
       this.getAll()
       this.userDetail()
