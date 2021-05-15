@@ -23,7 +23,7 @@ class UserRoute {
         this.router.get('/info/:userID', user_controller_1.default.info);
     }
     infoNoAuth() {
-        this.router.get('noauth/info/:userID', user_controller_1.default.info);
+        this.router.get('/noauth/info/:userID', user_controller_1.default.info);
     }
     getAll() {
         this.router.get('/', user_controller_1.default.home);

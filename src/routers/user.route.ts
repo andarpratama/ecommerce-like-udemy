@@ -23,7 +23,7 @@ class UserRoute {
    }
 
    public infoNoAuth(): void {
-      this.router.get('noauth/info/:userID', userController.info)
+      this.router.get('/noauth/info/:userID', userController.info)
    }
 
    public getAll():void {
