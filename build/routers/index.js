@@ -13,7 +13,7 @@ class Routes {
     constructor() {
         this.router = express_1.Router();
         this.home();
-        // this.auth()
+        this.auth();
         this.course();
         this.user();
         this.cart();
