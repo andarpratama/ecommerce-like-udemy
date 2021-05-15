@@ -24,6 +24,7 @@ class CartController {
             const idUser = req.userId;
             try {
                 const pushCourseId = yield Users_1.User.findByIdAndUpdate(idUser, { $push: { 'cartId': courseId } }, { new: true });
+                // const pushCourseId = await User.findById(idUser)
                 logging_1.default.info('ADD COURSE IN CART', `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
                 res.status(201).json({ msg: 'Pull new cart is success..', pushCourseId: pushCourseId });
             }

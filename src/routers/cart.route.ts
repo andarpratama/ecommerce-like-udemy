@@ -8,12 +8,12 @@ class CartRoute {
    constructor() {
       this.router = Router()
       this.home()
-      // this.auth()
+      this.authJWT()
       this.add()
       this.delete()
    }
 
-   public auth(): void {
+   public authJWT(): void {
       this.router.use(authJwt.authentication)
    }
 
@@ -22,7 +22,7 @@ class CartRoute {
    }
 
    public add(): void {
-      this.router.post('/add', CartController.add)
+      this.router.post('/add/:courseId', CartController.add)
    }
 
    public delete(): void {

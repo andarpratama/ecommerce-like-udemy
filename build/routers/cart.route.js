@@ -10,18 +10,18 @@ class CartRoute {
     constructor() {
         this.router = express_1.Router();
         this.home();
-        // this.auth()
+        this.authJWT();
         this.add();
         this.delete();
     }
-    auth() {
+    authJWT() {
         this.router.use(authJwt_1.default.authentication);
     }
     home() {
         this.router.get('/', cart_controller_1.default.home);
     }
     add() {
-        this.router.post('/add', cart_controller_1.default.add);
+        this.router.post('/add/:courseId', cart_controller_1.default.add);
     }
     delete() {
         this.router.post('/delete/:courseId', cart_controller_1.default.delete);
