@@ -8,7 +8,7 @@ class CartRoute {
    constructor() {
       this.router = Router()
       this.home()
-      this.auth()
+      // this.auth()
       this.add()
       this.delete()
    }

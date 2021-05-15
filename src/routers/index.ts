@@ -12,7 +12,7 @@ class Routes {
    constructor() {
       this.router = Router()
       this.home()
-      this.auth()
+      // this.auth()
       this.course()
       this.user()
       this.cart()
