@@ -16,10 +16,10 @@ class CartController {
          const pushCourseId = await User.findByIdAndUpdate(userId, { $push: { 'cartId': courseId } }, { new: true })
          // const pushCourseId = await User.findById(idUser)
          logging.info('ADD COURSE IN CART', `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
-         res.status(201).json({ msg: 'Pull new cart is success..', pushCourseId: pushCourseId})
+         res.status(201).json({ msg: 'Push new cart is success..', pushCourseId: pushCourseId})
       } catch (err) {
          logging.warn('ADD COURSE IN CART', `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
-         res.status(500).json({msg: 'Pull new cart is failed..', error: err})  
+         res.status(500).json({msg: 'Push new cart is failed..', error: err})  
       }
    }
 
