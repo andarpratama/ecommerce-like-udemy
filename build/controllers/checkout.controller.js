@@ -21,16 +21,17 @@ class CheckoutController {
     // add course to courseId in schema User
     static add(req, res, err) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { courseId } = req.body;
-            const idUser = req.userId;
+            const { courseId } = req.params;
+            // const idUser:string = (<any>req).userId
+            const { idUser } = req.body;
             try {
                 const pushCourseId = yield Users_1.User.findByIdAndUpdate(idUser, { $push: { 'courseId': courseId } }, { new: true });
                 logging_1.default.info('ADD COURSE IN CART', `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
-                res.status(201).json({ msg: 'Pull new cart is success..', pushCourseId: pushCourseId });
+                res.status(201).json({ msg: 'Add new course is success..', pushCourseId: pushCourseId });
             }
             catch (err) {
                 logging_1.default.warn('ADD COURSE IN CART', `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
-                res.status(500).json({ msg: 'Pull new cart is failed..', error: err });
+                res.status(500).json({ msg: 'Add new course is failed..', error: err });
             }
         });
     }

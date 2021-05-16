@@ -11,15 +11,16 @@ class CheckoutController {
 
    // add course to courseId in schema User
    static async add(req: Request, res: Response, err: ErrorRequestHandler) {
-      const { courseId } = req.body
-      const idUser:string = (<any>req).userId
+      const { courseId } = req.params
+      // const idUser:string = (<any>req).userId
+      const { idUser } = req.body
       try {
          const pushCourseId = await User.findByIdAndUpdate(idUser, { $push: { 'courseId': courseId } }, { new: true })
          logging.info('ADD COURSE IN CART', `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
-         res.status(201).json({ msg: 'Pull new cart is success..', pushCourseId: pushCourseId})
+         res.status(201).json({ msg: 'Add new course is success..', pushCourseId: pushCourseId})
       } catch (err) {
          logging.warn('ADD COURSE IN CART', `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
-         res.status(500).json({msg: 'Pull new cart is failed..', error: err})  
+         res.status(500).json({msg: 'Add new course is failed..', error: err})  
       }
    }
 }

@@ -7,6 +7,7 @@ const express_1 = require("express");
 const course_route_1 = __importDefault(require("./course.route"));
 const user_route_1 = __importDefault(require("./user.route"));
 const cart_route_1 = __importDefault(require("./cart.route"));
+const checkout_route_1 = __importDefault(require("./checkout.route"));
 const errorHandler_middleware_1 = __importDefault(require("../middlewares/errorHandler.middleware"));
 const auth_route_1 = __importDefault(require("./auth.route"));
 class Routes {
@@ -17,6 +18,7 @@ class Routes {
         this.course();
         this.user();
         this.cart();
+        this.checkout();
         this.errorHandler();
     }
     home() {
@@ -37,6 +39,9 @@ class Routes {
     }
     cart() {
         this.router.use('/cart', cart_route_1.default);
+    }
+    checkout() {
+        this.router.use('/checkout', checkout_route_1.default);
     }
     errorHandler() {
         this.router.use(errorHandler_middleware_1.default.handleErrors);
