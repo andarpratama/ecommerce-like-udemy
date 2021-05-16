@@ -37,9 +37,9 @@ class CartController {
     static delete(req, res, err) {
         return __awaiter(this, void 0, void 0, function* () {
             const { courseId } = req.params;
-            const idUser = req.userId;
+            const { userId } = req.body;
             try {
-                const pullCourseId = yield Users_1.User.findByIdAndUpdate(idUser, { $pull: { 'cartId': courseId } }, { new: true });
+                const pullCourseId = yield Users_1.User.findByIdAndUpdate(userId, { $pull: { 'cartId': courseId } }, { new: true });
                 logging_1.default.info('DELETE COURSE IN CART', `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
                 res.status(201).json({ msg: 'Pull new cart is success..', });
             }

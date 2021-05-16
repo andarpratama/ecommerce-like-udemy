@@ -25,9 +25,9 @@ class CartController {
 
    static async delete(req: Request, res: Response, err: ErrorRequestHandler) {
       const { courseId } = req.params
-      const idUser:string = (<any>req).userId
+      const { userId } = req.body
       try {
-         const pullCourseId = await User.findByIdAndUpdate(idUser, { $pull: { 'cartId': courseId } }, { new: true })
+         const pullCourseId = await User.findByIdAndUpdate(userId, { $pull: { 'cartId': courseId } }, { new: true })
          logging.info('DELETE COURSE IN CART', `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
          res.status(201).json({ msg: 'Pull new cart is success..',})
          
