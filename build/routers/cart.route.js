@@ -10,6 +10,8 @@ class CartRoute {
     constructor() {
         this.router = express_1.Router();
         this.home();
+        this.addNoAuth();
+        this.deleteNoAuth();
         this.authJWT();
         this.add();
         this.delete();
@@ -23,8 +25,14 @@ class CartRoute {
     add() {
         this.router.post('/add/:courseId', cart_controller_1.default.add);
     }
+    addNoAuth() {
+        this.router.post('/add/noauth/:courseId', cart_controller_1.default.add);
+    }
     delete() {
         this.router.post('/delete/:courseId', cart_controller_1.default.delete);
+    }
+    deleteNoAuth() {
+        this.router.post('/delete/noauth/:courseId', cart_controller_1.default.delete);
     }
 }
 exports.default = new CartRoute().router;
