@@ -11,9 +11,9 @@ class CartController {
 
    static async add(req: Request, res: Response, err: ErrorRequestHandler) {
       const { courseId } = req.params
-      const idUser:string = (<any>req).userId
+      const { userId } = req.body
       try {
-         const pushCourseId = await User.findByIdAndUpdate(idUser, { $push: { 'cartId': courseId } }, { new: true })
+         const pushCourseId = await User.findByIdAndUpdate(userId, { $push: { 'cartId': courseId } }, { new: true })
          // const pushCourseId = await User.findById(idUser)
          logging.info('ADD COURSE IN CART', `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
          res.status(201).json({ msg: 'Pull new cart is success..', pushCourseId: pushCourseId})
