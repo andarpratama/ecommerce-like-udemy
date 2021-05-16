@@ -70,7 +70,7 @@ class Auth {
             const foundUser = await User.findOne(loginUser);
             // When user not found
             if (!foundUser) {
-                throw { name: 'Invalid Email' };
+                throw { name: 'Email not Registered' };
             }
             const isPasswordValid = await bcrypt.compare(
                 req.body.password,
