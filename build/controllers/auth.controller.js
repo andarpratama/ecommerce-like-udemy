@@ -78,7 +78,7 @@ class Auth {
                 const foundUser = yield Users_1.User.findOne(loginUser);
                 // When user not found
                 if (!foundUser) {
-                    throw { name: 'Invalid Email' };
+                    throw { name: 'Email not Registered' };
                 }
                 const isPasswordValid = yield bcryptjs_1.default.compare(req.body.password, foundUser.password);
                 // When User password is wrong
