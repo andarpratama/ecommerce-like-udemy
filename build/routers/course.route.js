@@ -7,7 +7,7 @@ const express_1 = require("express");
 const course_controller_1 = __importDefault(require("../controllers/course.controller"));
 class CourseRoute {
     constructor() {
-        this.router = express_1.Router();
+        this.router = (0, express_1.Router)();
         this.home();
         this.create();
         this.getAll();

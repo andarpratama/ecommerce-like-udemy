@@ -12,7 +12,7 @@ const errorHandler_middleware_1 = __importDefault(require("../middlewares/errorH
 const auth_route_1 = __importDefault(require("./auth.route"));
 class Routes {
     constructor() {
-        this.router = express_1.Router();
+        this.router = (0, express_1.Router)();
         this.home();
         this.auth();
         this.course();

@@ -8,7 +8,7 @@ const user_controller_1 = __importDefault(require("../controllers/user.controlle
 const authJwt_1 = __importDefault(require("../middlewares/authJwt"));
 class UserRoute {
     constructor() {
-        this.router = express_1.Router();
+        this.router = (0, express_1.Router)();
         this.infoNoAuth();
         this.authJWT();
         this.info();

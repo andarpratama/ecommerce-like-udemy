@@ -7,7 +7,7 @@ const express_1 = require("express");
 const checkout_controller_1 = __importDefault(require("../controllers/checkout.controller"));
 class CheckoutRoute {
     constructor() {
-        this.router = express_1.Router();
+        this.router = (0, express_1.Router)();
         this.home();
         this.add();
     }

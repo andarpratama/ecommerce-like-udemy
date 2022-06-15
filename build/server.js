@@ -10,16 +10,16 @@ const cors_1 = __importDefault(require("cors"));
 const dotenv_1 = __importDefault(require("dotenv"));
 class App {
     constructor() {
-        this.app = express_1.default();
+        this.app = (0, express_1.default)();
         this.plugin();
         this.route();
         dotenv_1.default.config();
     }
     plugin() {
-        this.app.use(cors_1.default());
+        this.app.use((0, cors_1.default)());
         this.app.use(express_1.default.json());
         this.app.use(express_1.default.urlencoded({ extended: true }));
-        db_1.default();
+        (0, db_1.default)();
         this.app.use((req, res, next) => {
             res.setHeader("Access-Control-Allow-Origin", "*");
             res.setHeader("Access-Control-Expose-Headers", "Authorization");
