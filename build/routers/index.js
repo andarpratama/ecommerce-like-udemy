@@ -23,9 +23,26 @@ class Routes {
     }
     home() {
         this.router.get('/', (req, res) => {
-            const NAMESPACE = 'HOME';
-            // logging.info(NAMESPACE, `METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`);
-            res.status(200).json({ msg: 'Welcome.. login to get started' });
+            res.status(200).json({
+                message: 'Welcome to the Ecommerce Like Udemy API',
+                title: 'Ecommerce Like Udemy',
+                author: 'Andar Pratama',
+                detail_author: 'https://ecommerce-like-udemy.herokuapp.com/author',
+                version: 2.0,
+                repo: 'https://github.com/andarpratama/ecommerce-like-udemy',
+                slide: 'https://bit.ly/3kuAjqY',
+            });
+        });
+        this.router.get('/author', (req, res) => {
+            res.status(200).json({
+                name: 'Andar Pratama',
+                address: 'Tangerang',
+                phone: '081283699257',
+                education: 'Bachelor Degree in Informatics Enginering',
+                instagram: '@andar.pratama_',
+                github: 'https://github.com/andarpratama',
+                linkedin: 'https://www.linkedin.com/in/andarpratama/',
+            });
         });
     }
     auth() {

@@ -11,7 +11,7 @@ class mongooDB {
         dotenv_1.default.config();
     }
     connectDB() {
-        const pathURL = 'mongodb+srv://andarpratama:0ne41sGvLaRjTrCA@node-game-app.scrnm.mongodb.net/like-udemy?retryWrites=true&w=majority';
+        const pathURL = 'mongodb+srv://andarpratama:0ne41sGvLaRjTrCA@node-game-app.scrnm.mongodb.net/ecommerce-like-udemy?retryWrites=true&w=majority';
         const connectOption = {
             useCreateIndex: true,
             useNewUrlParser: true,
